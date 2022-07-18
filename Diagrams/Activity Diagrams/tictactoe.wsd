@@ -1,0 +1,14 @@
+@startuml 
+    start
+        repeat
+            :choosePlayersRoles;
+            repeat
+                :put X;
+                if(!isTicTacToe) then (yes)
+                :put O;  
+                else (no)
+                endif
+            repeat while (!isTicTacToe && !isBoardFull) is (yes)
+        repeat while (isAnyTurnLeft) is (yes)
+    stop
+@enduml

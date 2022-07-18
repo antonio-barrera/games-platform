@@ -1,0 +1,80 @@
+@startuml
+class Hangman {
+    - Player player1
+    - Player player2
+    - List<Player> results
+    - HangmanTurn turn
+    + Hangman(Player, Player)
+    + playTurn()
+    - giveHint()
+    - flipTurns()
+    + printResult()
+    - choosePlayersRoles()
+}
+class HangmanTurn {
+    - Player giver
+    - Player guesser
+    - Player result
+    - Figure figure
+    - Word word
+    + Hangman(Player, Player)
+    + play()
+    + getResult()
+    + setResult(Player)
+}
+abstract class Player {
+    - int id
+    - String name
+    - int winnings
+    - int losses
+    - int rounds
+    - Piece piece
+    + {abstract} throwDice()
+    + {abstract} giveWord()
+    + {abstract} giveLetter()
+    + {abstract} putPiece()
+}
+class Human {
+    + throwDice()
+    + giveWord()
+    + giveLetter()
+    + putPiece()
+}
+class IA {
+    + throwDice()
+    + giveWord()
+    + giveLetter()
+    + putPiece()
+}
+class Word {
+    - char[] givenWord
+    - char[] guessedWord
+    + Word(String)
+    + writeWord()
+    + isGuessed()
+    + addLetter(char)
+}
+class Figure {
+    - int numWrong
+    + paintFigure()
+    + isHanged()
+    + addPart()
+}
+class Dice {
+    + {static} generateValue(int)
+}
+
+Hangman *-- HangmanTurn
+Hangman o-- Player
+
+HangmanTurn *-- Word
+HangmanTurn *-right- Figure
+HangmanTurn -left-> Player
+
+Player <|-- Human
+Player <|-- IA
+Player .left.> Dice
+Player -right-> Word
+
+Figure ..> Word
+@enduml

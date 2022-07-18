@@ -1,0 +1,16 @@
+@startuml 
+  start
+    repeat
+        if(askToManagePlayers) then (yes)
+            :managePlayers; 
+        else if(askToShowPlayersStatistics) then (yes)
+            :showPlayersStatistics; 
+        else if(askToPlayTicTacToe) then (yes)
+            :playTicTacToe; 
+        else if(askToPlayHangman) then (yes)
+            :playHangman; 
+        else (no)
+        endif
+    repeat while (askToleave) is (no)
+  stop
+@enduml

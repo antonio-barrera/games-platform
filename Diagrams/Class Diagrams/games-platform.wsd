@@ -1,0 +1,94 @@
+@startuml
+    class GamesPlatform {
+        - Game game
+        - Player player1
+        - Player player2
+        - IPlayerCRUD players
+        + GamesPlatform()
+        + run()
+        - playersManagment()
+        - displayGameMenu()
+        - displayPlayersMenu()
+        - executeGame(String)
+        - createPlayer()
+        - selectPlayer()
+        - modifyPlayer()
+        - deletePlayer()
+        - listPlayers()
+        - showPlayersStatistics()
+        - sortPlayers(Player[])
+    }
+    package data {
+        interface IPlayerCRUD {
+            + {abstract} create(Object)
+            + {abstract} select(int)
+            + {abstract} selectAll()
+            + {abstract} update(Object)
+            + {abstract} delete(Object)
+        }
+        class PlayerCRUD {
+            + create(Player)
+            + select(int)
+            + selectAll()
+            + update(Player)
+            + delete(Player)
+        }
+    }
+    package player {
+        abstract class Player {
+            - int id
+            - String name
+            - int winnings
+            - int losses
+            - int rounds
+            + Player(String)
+            + Player(int, String)
+            + {abstract} throwDice()
+            + {abstract} giveWord()
+            + {abstract} giveLetter()
+            + {abstract} putPiece()
+        }
+    }
+    package game {
+        abstract class Game {
+            - Player player1
+            - Player player2
+            - List<Player> results
+            + Game(Player, Player)
+            + {abstract} playRound()
+            - {abstract} choosePlayersRoles()
+            + {abstract} printResult()
+            - {abstract} flipTurns()
+        }
+        abstract class Turn {
+            - Player player1
+            - Player player2
+            - Player result
+            + Turn(Player, Player)
+            + {abstract} play()
+            + setResult(Player)
+            + getResult()
+        }
+    }
+    package util {
+        class Dice {
+            + {static} generateValue(int limit)
+        }
+    }
+    GamesPlatform *-- Player
+    GamesPlatform *-- Game
+    GamesPlatform --> IPlayerCRUD
+
+    Player ..> Dice
+
+    Game *-- Turn
+    Game o-- Player
+    Game ..> Dice
+
+    IPlayerCRUD <|-- PlayerCRUD
+    IPlayerCRUD --> Player
+
+    Turn -left-> Player
+    Turn ..> Dice
+
+@enduml

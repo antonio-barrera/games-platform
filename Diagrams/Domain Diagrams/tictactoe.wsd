@@ -1,0 +1,43 @@
+@startuml
+Object TicTacToe
+Object TicTacToeTurn
+Object Player
+Object Human
+Object IA
+Object Action
+Object PlayerStatistics
+Object Dice
+Object Board
+Object Square
+Object Piece
+Object Color
+Object X
+Object O
+
+TicTacToe *-- TicTacToeTurn
+TicTacToe *-- Board
+TicTacToe o-- Player
+
+TicTacToeTurn --> Player
+TicTacToeTurn --> Board
+TicTacToeTurn ..> Dice
+
+Player *-- PlayerStatistics
+Player --> Color
+Player --> Action
+Player <|-- Human
+Player <|-- IA
+
+Action ..> Board
+Action ..> Piece
+Action ..> Dice
+
+Board *-- Square
+
+Square o-- Piece
+
+Piece *-- Color
+
+Color <|-- X
+Color <|-- O
+@enduml

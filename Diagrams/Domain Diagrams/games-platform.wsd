@@ -1,0 +1,48 @@
+@startuml
+Object GamesPlatform
+Object Game
+Object TicTacToe
+Object Hangman
+Object Turn
+Object Player
+Object Human
+Object IA
+Object PlayerStatistics
+Object Action
+Object Menu
+Object Dice
+Object PlayerCRUD
+Object SelectPlayers
+Object SelectPlayersRoles
+
+GamesPlatform *-- Menu
+GamesPlatform *-- Player
+GamesPlatform *-- Game
+
+Menu o-- PlayerCRUD
+Menu o-- Game
+Menu --> SelectPlayers
+Menu ..> Dice
+
+PlayerCRUD --> Player
+
+SelectPlayers --> PlayerCRUD
+SelectPlayers --> Player
+
+Game *-- Turn
+Game --> SelectPlayersRoles
+Game --> Player
+Game <|-- TicTacToe
+Game <|-- Hangman
+
+Turn ..> Dice
+
+Player *-- PlayerStatistics
+Player --> Action
+Player <|-- Human
+Player <|-- IA
+
+Action ..> Dice
+
+SelectPlayersRoles ..> Dice
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+Object Hangman
+Object HangmanTurn
+Object Word
+Object Figure
+Object Player
+Object Human
+Object IA
+Object PlayerStatistics
+Object Action
+Object Dice
+Object GiveHint
+
+Hangman *-- HangmanTurn
+Hangman o-- Player
+
+HangmanTurn *-- Figure
+HangmanTurn *-- Word
+HangmanTurn --> GiveHint
+HangmanTurn --> Player
+HangmanTurn ..> Dice
+
+Player *-- PlayerStatistics
+Player --> Action
+Player <|-- Human
+Player <|-- IA
+
+Action ..> Dice
+
+Figure ..> Word
+@enduml

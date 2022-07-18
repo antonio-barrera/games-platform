@@ -1,0 +1,84 @@
+@startuml
+class TicTacToe {
+    - Player player1
+    - Player player2
+    - List<Player> results
+    - TicTacToeTurn turn
+    + TicTacToe(Player, Player)
+    + playRound()
+    - flipTurns()
+    + printResult()
+    - choosePlayersRoles()
+}
+class TicTacToeTurn {
+    - Player playerX
+    - Player playerO
+    - Player result
+    - Board board
+    + TicTacToe(Player, Player)
+    + play()
+    + getResult()
+    + setResult(Player)
+}
+abstract class Player {
+    - int id
+    - String name
+    - int winnings
+    - int losses
+    - int rounds
+    + {abstract} throwDice()
+    + {abstract} giveWord()
+    + {abstract} giveLetter()
+    + {abstract} putPiece()
+}
+class Human {
+    + throwDice()
+    + giveWord()
+    + giveLetter()
+    + putPiece()
+}
+class IA {
+    + throwDice()
+    + giveWord()
+    + giveLetter()
+    + putPiece()
+}
+
+class Board {
+    - int availableSquares
+    - Piece[3][3] pieces
+    + initBoard()
+    + paintBoard()
+    + isAnyAvailableSquare()
+    + putPiece(int[], Piece)
+    + getBoard()
+    + getWinner()
+    - checkRows()
+    - checkColumns()
+    - checkDiagonals()
+}
+class Dice {
+    + {static} generateValue(int)
+}
+enum Piece {
+    + X
+    + O
+    + Null
+}
+
+TicTacToe *-- TicTacToeTurn
+TicTacToe *-- Board
+TicTacToe o-- Player
+TicTacToe .left.> Dice
+
+TicTacToeTurn -right-> Board
+TicTacToeTurn -left-> Player
+
+Board o-- Piece
+
+Player <|-- Human
+Player <|-- IA
+Player .up.> Dice
+Player ..> Board
+
+@enduml
