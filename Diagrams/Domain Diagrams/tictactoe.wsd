@@ -11,6 +11,7 @@ Object Board
 Object Square
 Object Piece
 Object Color
+Object Goal
 Object X
 Object O
 
@@ -23,6 +24,7 @@ TicTacToeTurn --> Board
 TicTacToeTurn ..> Dice
 
 Player *-- PlayerStatistics
+Player o-- Goal
 Player --> Color
 Player --> Action
 Player <|-- Human

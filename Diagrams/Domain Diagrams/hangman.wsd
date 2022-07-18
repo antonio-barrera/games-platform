@@ -10,6 +10,7 @@ Object PlayerStatistics
 Object Action
 Object Dice
 Object GiveHint
+Object Goal
 
 Hangman *-- HangmanTurn
 Hangman o-- Player
@@ -21,6 +22,7 @@ HangmanTurn --> Player
 HangmanTurn ..> Dice
 
 Player *-- PlayerStatistics
+Player o-- Goal
 Player --> Action
 Player <|-- Human
 Player <|-- IA
