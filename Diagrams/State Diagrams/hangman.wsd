@@ -1,0 +1,16 @@
+@startuml instructionsState
+
+    state State1 as " "
+    state State2 as " "
+    state State3 as " "
+    state State4 as " "
+
+    [*] --> State1
+    State1 --> State2 : Choose Giver
+    State2 --> State3 : Give Letter
+    State3 --> State4 : [isGuessed]
+    State3 --> State2 : [!isGuessed]
+    State4 --> State1 : [isATurnLeft]
+    State4 --> [*] : [!isATurnLeft]
+
+@enduml
