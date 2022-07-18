@@ -1,0 +1,17 @@
+@startuml instructionsState
+
+    state State1 as " "
+    state State2 as " "
+    state State3 as " "
+    state State4 as " "
+
+    [*] --> State3
+    State3 --> State1 : Choose X Player
+    State1 --> State2 : Put X
+    State1 --> State4 : [winO][isATie]
+    State2 --> State1 : Put O
+    State2 --> State4 : [winX]
+    State4 --> State3 : [isATurnLeft]
+    State4 --> [*] : [!isATurnLeft]
+
+@enduml
