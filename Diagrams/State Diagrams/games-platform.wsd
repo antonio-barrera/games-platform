@@ -1,0 +1,20 @@
+@startuml instructionsState
+
+    state State1 as " "
+    state State2 as " "
+    state State3 as " "
+    state State4 as " "
+    state State5 as " "
+
+    [*] --> State1
+    State1 -up-> State2 : Manage Players
+    State2 --> State1 : Close
+    State1 -up-> State3 : Show Players Statistics
+    State3 --> State1 : Close
+    State1 --> State4 : Play TicTacToe
+    State4 --> State1 : Close
+    State1 --> State5 : Playe Hangman
+    State5 --> State1 : Close
+    State1 --> [*] : exit
+
+@enduml
