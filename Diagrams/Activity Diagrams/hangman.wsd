@@ -1,0 +1,11 @@
+@startuml 
+    start
+        repeat
+            :choosePlayersRoles;
+            :giveWord;
+            repeat
+                :giveLetter;
+            repeat while (!isWordGuessed && !isHanged) is (yes)
+        repeat while (isAnyTurnLeft) is (yes)
+    stop
+@enduml
